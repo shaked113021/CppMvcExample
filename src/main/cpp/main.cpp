@@ -1,6 +1,14 @@
 #include <iostream>
+#include "gtkmm/application.h"
+#include "MvcExample/MainWindow.hpp"
+
+using MvcExample::MainWindow;
 
 int main(int argc, char *argv[])
 {
-  std::cout << "Hello, World" << std::endl;
+  auto app = Gtk::Application::create(argc, argv, "shakedcohen.mvcexample");
+
+  MainWindow mainWindow;
+
+  return app->run(mainWindow);
 }
