@@ -2,6 +2,17 @@ plugins {
     id 'cpp-application'
 }
 
+tasks.withType(CppCompile).configureEach {
+    compilerArgs.add '-pthread'
+    includes.from(INCLUDE.split(','))
+}
+
+tasks.withType(LinkExecutable).configureEach {
+    for (lib in LIBS.split(',')) {
+        linkerArgs.add('-l'+lib)
+    }
+}
+
 application {
     targetMachines.add(machines.linux.x86_64)
 }
